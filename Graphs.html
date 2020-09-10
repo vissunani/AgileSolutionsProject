@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+h4 {
+  background-color: rgba(54, 162, 235, 1);
+}
+div.col-sm-4{
+position: absolute;
+  left: 450px;
+}
+div.col-sm-5{
+position: absolute;
+  left:850px;
+}
+</style>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Sales Report</title>
+  <!-- MDB icon -->
+  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <!-- Material Design Bootstrap -->
+  <link rel="stylesheet" href="css/mdb.min.css">
+  <h4><pre style="color:white" class="/tab"> Menu            <span style="height: 15px;width: 15px;background-color: red;border-radius: 50%;display: inline-block;" class="dot"></span>  Username                              &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp    SalesReport </pre>
+     </h4>
+</head>
+<body>
+ <div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+     <strong> 
+          Category
+        <select id="select1" onchange="main()"> 
+            <option value="Food">Food</option> 
+            <option value="Cloth">Cloth</option> 
+			<option value="Tablets">Tablets</option> 
+        </select> 
+    </strong> 
+    </div>
+      <div class="col-sm-4">
+      <strong>
+          <center>Product
+        <select style="margin-left:0%" onchange="main()" id="select2"> 
+            <option value="Burger">Burger</option> 
+            <option value="Pizza">Pizza</option> 
+            <option value="Samosa">Samosa</option> 
+        </select> </center>
+    </strong>  
+  </div>
+  <div class="col-sm-5">
+<strong> 
+ <center> Brand
+        <select id="select3" onchange="Report()"> 
+            <option value="LBurger">Low Diet Burger</option> 
+            <option value="HBurger">High Diet Burger</option> 
+        </select>  </center>
+</strong></div>
+</div>
+</div>
+    <strong class="card-title"><p><center>Sales by Month for</center></p></strong>
+	<div class="card" id="graph-container" style=" height: 20rem;">
+    <canvas style="height:200%" id="barChart"></canvas>
+	</div>
+<!-- End your project here-->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <!-- Your custom scripts (optional) -->
+  <script>
+var data=[12,19,3,5];
+
+
+var ctxB = document.getElementById("barChart").getContext('2d');
+var myBarChart = new Chart(ctxB, {
+type: 'bar',
+data: {
+labels: ["January", "February", "March", "April"],
+datasets: [{
+label: 'sales',
+data: data,
+backgroundColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',			
+
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderWidth: 1
+}]
+},
+options: { 
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+
+
+
+
+function main()
+{
+	
+	selectElement1 = document.querySelector('#select1'); 
+	output1=selectElement1.value;	
+	
+	if (output1=="Food")
+	{
+		var opt= document.getElementById('select2').options[0];
+		opt.value =  'Pizza';
+		opt.text = 'Pizza';
+		
+		
+		var opt= document.getElementById('select2').options[1];
+		opt.value =  'Burger';
+		opt.text = 'Burger';
+		
+		
+		
+		
+		var opt= document.getElementById('select2').options[2];
+		opt.value =  'Samosa';
+		opt.text = 'Samosa';
+	
+		//window.alert("Vissu");
+	}
+	
+	
+	if (output1=="Cloth")
+	{
+		var opt= document.getElementById('select2').options[0];
+		opt.value =  'Cotton';
+		opt.text = 'Cotton';
+		
+		
+		var opt= document.getElementById('select2').options[1];
+		opt.value =  'Silk';
+		opt.text = 'Silk';
+		
+		
+		
+		
+		var opt= document.getElementById('select2').options[2];
+		opt.value =  'Wool';
+		opt.text = 'Wool';
+	
+		//window.alert("Vissu");
+	}
+	
+	
+	
+	if (output1=="Tablets")
+	{
+		var opt= document.getElementById('select2').options[0];
+		opt.value =  'Paracet';
+		opt.text = 'Paracet';
+		
+		
+		var opt= document.getElementById('select2').options[1];
+		opt.value =  'Painkillers';
+		opt.text = 'Painkillers';
+		
+		
+		
+		
+		var opt= document.getElementById('select2').options[2];
+		opt.value =  'Antibiotics';
+		opt.text = 'Antibiotics';
+	
+		//window.alert("Vissu");
+	}
+	
+	
+	
+	
+	
+	
+	selectElement2 = document.querySelector('#select2'); 
+	output2=selectElement2.value;
+	//window.alert("Output 2="+output2);
+	if (output2=="Pizza")
+	{
+		//window.alert("Yooo");
+		var opt= document.getElementById('select3').options[0];
+		opt.value =  'HPizza';
+		opt.text = 'High Diet Pizza';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'LPizza';
+		opt.text = 'Low Diet Pizza';
+	}
+	
+	if (output2=="Samosa")
+	{
+	var opt= document.getElementById('select3').options[0];
+		opt.value =  'ASamosa';
+		opt.text = 'Aloo Samosa';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'OSamosa';
+		opt.text = 'Onion Samosa';
+	}
+	
+	if (output2=="Burger")
+	{
+	    var opt= document.getElementById('select3').options[0];
+		opt.value =  'HDBurger';
+		opt.text = 'High Diet Burger';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'LDBurger';
+		opt.text = 'Low Diet Burger';
+	}
+	
+	if (output2=="Cotton")
+	{
+		var opt= document.getElementById('select3').options[0];
+		opt.value =  'Shirt';
+		opt.text = 'Shirt';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'Pant';
+		opt.text = 'Pant';
+	}
+	if (output2=="Silk")
+	{
+		var opt= document.getElementById('select3').options[0];
+		opt.value =  'Saree';
+		opt.text = 'Saree';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'Trouser';
+		opt.text = 'Trouser';
+	}
+	if (output2=="Wool")
+	{
+		var opt= document.getElementById('select3').options[0];
+		opt.value =  'Sweater';
+		opt.text = 'Sweater';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'Cap';
+		opt.text = 'Cap';
+	}
+	
+	
+	
+	if (output2=="Paracet")
+	{
+		var opt= document.getElementById('select3').options[0];
+		opt.value =  'Crosin';
+		opt.text = 'Crosin';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'Dollo';
+		opt.text = 'Dollo';
+	}
+	
+	
+	if (output2=="PainKillers")
+	{
+		var opt= document.getElementById('select3').options[0];
+		opt.value =  'calpol';
+		opt.text = 'calpol';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'Mobizox';
+		opt.text = 'Mobizox';
+	}
+	
+	if (output2=="Antibiotics")
+	{
+		var opt= document.getElementById('select3').options[0];
+		opt.value =  'Taxim';
+		opt.text = 'Taxim';
+		
+		var opt= document.getElementById('select3').options[1];
+		opt.value =  'Cipron';
+		opt.text = 'Cipron';
+	}
+	
+	
+	Report();
+	
+	
+}
+
+
+
+function Report()
+{
+var data=[1,2,3,5]	
+document.getElementById("barChart").remove(); //canvas
+div = document.querySelector("#graph-container"); //canvas parent element
+div.insertAdjacentHTML("afterbegin","<canvas style='height:500%' id='barChart'></canvas>");
+for (var i=0;i<4;i++)
+	{
+		data[i]=(Math.ceil(Math.random() * 10));
+	}
+//window.alert(data);
+var ctxB=document.getElementById("barChart");
+var myBarChart = new Chart(ctxB, {
+type: 'bar',
+data: {
+labels: ["January", "February", "March", "April"],
+datasets: [{
+label: 'sales',
+data: data,
+backgroundColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderColor: [
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)',			
+
+'rgba(54, 162, 235, 1)',
+'rgba(54, 162, 235, 1)'
+],
+borderWidth: 1
+}]
+},
+options: { 
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+}
+
+
+
+ </script>
+
+</body>
+</html>
